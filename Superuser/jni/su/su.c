@@ -834,10 +834,10 @@ int main(int argc, char *argv[]) {
     }
 
     // check if superuser is disabled completely
-    if (access_disabled(&ctx.from)) {
+    /*if (access_disabled(&ctx.from)) {
         LOGD("access_disabled");
         deny(&ctx);
-    }
+    }*/
 
     // autogrant shell at this point
     if (ctx.from.uid == AID_SHELL) {

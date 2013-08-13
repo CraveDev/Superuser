@@ -315,24 +315,7 @@ public class Settings {
     public static final int SUPERUSER_ACCESS_ADB_ONLY = 2;
     public static final int SUPERUSER_ACCESS_APPS_AND_ADB = 3;
     public static int getSuperuserAccess() {
-        try {
-            Class c = Class.forName("android.os.SystemProperties");
-            Method m = c.getMethod("get", String.class);
-            String value = (String)m.invoke(null, "persist.sys.root_access");
-            int val = Integer.valueOf(value);
-            switch (val) {
-            case SUPERUSER_ACCESS_DISABLED:
-            case SUPERUSER_ACCESS_APPS_ONLY:
-            case SUPERUSER_ACCESS_ADB_ONLY:
-            case SUPERUSER_ACCESS_APPS_AND_ADB:
-                return val;
-            default:
-                return SUPERUSER_ACCESS_APPS_AND_ADB;
-            }
-        }
-        catch (Exception e) {
-            return SUPERUSER_ACCESS_APPS_AND_ADB;
-        }
+    	return SUPERUSER_ACCESS_APPS_AND_ADB;
     }
     
     public static void setSuperuserAccess(int mode) {
