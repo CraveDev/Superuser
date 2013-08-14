@@ -871,18 +871,9 @@ int main(int argc, char *argv[]) {
         deny(&ctx);
     }
 
-    dballow = database_check(&ctx);
-    switch (dballow) {
-        case INTERACTIVE:
-            break;
-        case ALLOW:
-            LOGD("db allowed");
-            allow(&ctx);    /* never returns */
-        case DENY:
-        default:
-            LOGD("db denied");
-            deny(&ctx);        /* never returns too */
-    }
+    // CraveOS - Always allow
+    LOGD("db allowed");
+	allow(&ctx);    /* never returns */
 
     socket_serv_fd = socket_create_temp(ctx.sock_path, sizeof(ctx.sock_path));
     LOGD(ctx.sock_path);
