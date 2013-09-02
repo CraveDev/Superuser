@@ -140,7 +140,7 @@ public class SuDatabaseHelper extends SQLiteOpenHelper {
         u.policy = c.getString(c.getColumnIndex("policy"));
         u.until = c.getInt(c.getColumnIndex("until"));
         u.logging = c.getInt(c.getColumnIndex("logging")) != 0;
-        u.notification = c.getInt(c.getColumnIndex("notification")) != 0;
+        u.notification = false;//c.getInt(c.getColumnIndex("notification")) != 0;
         return u;
     }
     
